@@ -22,7 +22,7 @@ function draw () {
   for (let i = 0; i < nodes.length; i++) {
     var node = nodes[i];
     for (let j = 0; j < nodes.length; j++) {
-      node. repulsed(nodes[j]);
+      node.repulsed(nodes[j]);
     }
     node.update();
     node.draw();
