@@ -13,13 +13,16 @@ function setup () {
 
 function draw () {
   clear();
+  
   let x1 = map(mouseX, 0, WIDTH, 0, WIDTH)
   let x2 = map(mouseY, 0, HEIGHT, 0, HEIGHT)
+
   circle(x1, x2, 10, 10)
   for(position of positions) {
     circle(position.x, position.y, 10, 10)
   }
   for(let j = 1; j < positions.length; j++) {
+    rotate(PI / 1);
     let pos3 = positions[j];
     let pos4 = positions[j-1];
     for(let i = 1; i < positions.length; i++) {
@@ -30,13 +33,11 @@ function draw () {
       line(pos3.x, pos3.y, pos1.x, pos1.y)
       line(pos4.x, pos4.y, pos1.x, pos1.y)
     }
-
-    
   }
 }
 
 
-function mouseClicked() {
+function mouseDragged() {
   positions.push(createVector(mouseX, mouseY))
   console.log(positions)
 }
