@@ -26,19 +26,22 @@ function setup () {
   
   filter(BLUR, 12);
   CANVAS = createCanvas(WIDTH, HEIGHT)
-  CANVAS.mousePressed(e => {
-    fetch(server_url)
-      .then(response => response.json())
-      .then(json => json.filter(e => e.length >= 3))
-      .then(json => {
-	past_words.push([json.shuffle()[0],
-			 mouseX, 
-			 mouseY])
-
-      })
-  })
   CONTEXT = document.querySelector("canvas").getContext('2d')
-  
+
+  i = 0;
+  for(i = 0; i <= 15; i++) {
+    (function (i) {
+     setTimeout(function () {
+       fetch(server_url)
+	 .then(response => response.json())
+	 .then(json => json.filter(e => e.length >= 3))
+	 .then(json => {
+	   past_words.push([json.shuffle()[i],
+			    mouseX, 
+			    mouseY])})
+     }, 501*i)
+    })(i)
+  }
   textSize(24)
   textFont(kongFont);
 
